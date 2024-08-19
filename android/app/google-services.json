@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "133104800686",
+    "project_id": "lcpl-academy",
+    "storage_bucket": "lcpl-academy.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:133104800686:android:ec680cedff00f99271ee3f",
+        "android_client_info": {
+          "package_name": "com.lotte.lcplacademy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoyxqvAQRQwLVDaEALPzC_V0SyFlUzUIU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:133104800686:android:cf1c9f6dbe0b61f971ee3f",
+        "android_client_info": {
+          "package_name": "com.lottechem.academyadmin"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoyxqvAQRQwLVDaEALPzC_V0SyFlUzUIU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:133104800686:android:161ebe9a8419f6a671ee3f",
+        "android_client_info": {
+          "package_name": "com.lottechem.lcplacademy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoyxqvAQRQwLVDaEALPzC_V0SyFlUzUIU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
