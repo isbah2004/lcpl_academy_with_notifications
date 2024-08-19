@@ -1,7 +1,7 @@
-import 'dart:convert';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class PushNotification {
@@ -23,11 +23,29 @@ class PushNotification {
 
     await getDeviceToken();
     await localNotiInit();
+
+    // Listen for token refresh events
+    FirebaseMessaging.instance.onTokenRefresh.listen((newToken) {
+      saveTokenToFirestore(newToken);
+    });
   }
 
   static Future<void> getDeviceToken() async {
     String? token = await firebaseMessaging.getToken();
+    if (token != null) {
+      saveTokenToFirestore(token);
+    }
     debugPrint('Token: $token');
+  }
+
+  // Store the token in Firestore under the user's document
+  static Future<void> saveTokenToFirestore(String token) async {
+    // Assume you have a userId representing the current user
+    String userId = FirebaseAuth.instance.currentUser!.uid; // Replace with actual userId
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(userId)
+        .update({'deviceToken': token});
   }
 
   static Future localNotiInit() async {
@@ -63,17 +81,4 @@ class PushNotification {
     await flutterLocalNotificationsPlugin
         .show(0, title, body, notificationDetails, payload: payload);
   }
-}
-
-void setupFirebaseListeners() {
-  FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-    debugPrint('Notification received in Foreground');
-    if (message.notification != null) {
-      PushNotification.showSimpleNotification(
-        title: message.notification!.title ?? 'No Title',
-        body: message.notification!.body ?? 'No Body',
-        payload: jsonEncode(message.data), // Corrected payload handling
-      );
-    }
-  });
 }
